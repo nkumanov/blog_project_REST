@@ -3,6 +3,7 @@ const UserModel = require('../models/User')
 const { TOKEN_SECRET, COOKIE_NAME } = require('../config/basic')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const mongoose = require('mongoose')
 async function createUser(email, username, hashedPassword) {
     const user = new UserModel({
         email,
@@ -100,10 +101,13 @@ async function getBookmarks(userId) {
 }
 async function removeFromBookmarks(blogId, userId) {
     const user = await UserModel.findById(userId);
+    
     if (user.bookmarks.indexOf(blogId) == -1) {
         throw new Error('You do not have this blog in bookmarks!')
     }
-    user.bookmarks.splice(blogId, 1);
+    
+    user.bookmarks.splice(user.bookmarks.indexOf(mongoose.Types.ObjectId(blogId)), 1);
+    
     await user.save();
 
 
