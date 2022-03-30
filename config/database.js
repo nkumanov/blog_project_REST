@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 module.exports = (app) => {
     return new Promise((resolve,reject) => {
-        mongoose.connect('mongodb+srv://nkumanov://////@cluster0.lqibd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+        mongoose.connect('mongodb+srv://nkumanov://asd////@cluster0.lqibd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
         const db = mongoose.connection;
         db.on('error', (err) => {
             console.error('connection error:', err);
