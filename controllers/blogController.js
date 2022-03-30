@@ -18,9 +18,11 @@ const upload = multer({storage: storage})
 
 router.get('/', async (req, res) => {
     try {
+        
         const blogs = await blogService.getBlogs();
         
         blogs.forEach(x => {
+            
             x.author = x.author.username;
 
             x.createdAt = x.createdAt.toISOString().split('T')[0];
@@ -28,6 +30,7 @@ router.get('/', async (req, res) => {
             x.readTime = Math.ceil(x.description.split(' ').length / 200)
 
         })
+        
         res.status(201).json(blogs)
     } catch (error) {
         console.log(error.message)
