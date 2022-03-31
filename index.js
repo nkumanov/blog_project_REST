@@ -3,6 +3,8 @@ const expressConfig = require('./config/express');
 const databaseConfig = require('./config/database')
 const { PORT } = require('./config/basic');
 const router = require('./config/router')
+require('dotenv').config()
+
 const authMiddleware = require('./middlewares/authMiddleware')
 start()
 

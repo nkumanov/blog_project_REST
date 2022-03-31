@@ -1,6 +1,6 @@
 
 const UserModel = require('../models/User')
-const { TOKEN_SECRET, COOKIE_NAME } = require('../config/basic')
+
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
@@ -58,7 +58,7 @@ function generateToken(userData) {
     const token = jwt.sign({
         _id: userData._id,
         email: userData.email
-    }, TOKEN_SECRET);
+    }, process.env.TOKEN_SECRET);
     return token;
 }
 
