@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken')
 
 
-const { TOKEN_SECRET, COOKIE_NAME } = require('../config/basic');
+
 
 
 
@@ -12,7 +12,7 @@ module.exports = () => (req, res, next) => {
         
         
             try {
-                const userData = jwt.verify(token, TOKEN_SECRET);
+                const userData = jwt.verify(token, process.env.TOKEN_SECRET);
                 req.user = userData;
                 
                 next()
