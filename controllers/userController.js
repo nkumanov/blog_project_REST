@@ -73,13 +73,4 @@ router.get('/bookmarked',  async (req, res) => {
     }
 })
 
-router.post('/bookmarked/:id', isUser(), async (req, res) => {
-    try {
-        await userService.removeFromBookmarks(req.params.id, req.user._id)
-        res.status(200).send('Successfully removed from Bookmarks.')
-    } catch (error) {
-        res.status(400).json({ "error-message": error.message })
-        console.log(error)
-    }
-})
 module.exports = router;

@@ -95,7 +95,7 @@ async function getBookmarks(userId) {
         populate: {'path': 'author', 'model': 'User'}
     }).lean();
     if (user.bookmarks.length < 1) {
-        throw new Error('You do not have bookmarked blogs!')
+        return []
     }
     return user.bookmarks;
 }
