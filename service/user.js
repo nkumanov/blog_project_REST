@@ -1,6 +1,4 @@
-
 const UserModel = require('../models/User')
-
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
@@ -40,8 +38,6 @@ async function login(email, password) {
 
     return generateToken(existing);
 }
-
-
 
 async function register(email, username, hashedPassword) {
     const existing = await getUserByEmail(email);

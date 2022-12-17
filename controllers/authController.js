@@ -30,13 +30,6 @@ router.post('/register', isGuest(), async (req, res) => {
     }
 })
 
-router.get('/register', isGuest(), (req, res) => {
-
-    res.status(200).json({ "success-message": "success" })
-
-
-})
-
 router.post('/login', isGuest(), async (req, res) => {
 
     try {
@@ -48,13 +41,6 @@ router.post('/login', isGuest(), async (req, res) => {
         res.status(400).json({ "error-message": err.message })
         console.log(err)
     }
-
-
-})
-
-router.get('/login', isGuest(), (req, res) => {
-
-    res.status(200).json({ "success-message": "success" })
 
 
 })

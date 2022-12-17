@@ -3,31 +3,6 @@ const userService = require('../service/user')
 
 const { isGuest, isUser } = require('../service/guards')
 
-router.post('/follow/:id', isUser(), async (req, res) => {
-
-    const follower = req.user._id;
-
-    try {
-        await userService.followUser(req.params.id, follower)
-        res.status(200).json({ "message": "successfully followed" })
-    } catch (error) {
-        res.status(401).json({ "error-message": error.message })
-        console.log(error)
-    }
-})
-
-router.post('/unfollow/:id', isUser(), async (req, res) => {
-
-    const follower = req.user._id;
-
-    try {
-        await userService.unFollowUser(req.params.id, follower)
-        res.status(200).json({ "message": "successfully unfollowed" })
-    } catch (error) {
-        res.status(401).json({ "error-message": error.message })
-        console.log(error)
-    }
-})
 router.patch('/bookmark/:id', isUser(), async (req, res) => {
 
     
@@ -52,7 +27,7 @@ router.delete('/bookmark/:id', isUser(), async (req, res) => {
         console.log(error)
     }
 })
-router.get('/bookmarked',  async (req, res) => {
+router.get('/bookmarked',isUser(),  async (req, res) => {
     
     try {
         const bookmarks = await userService.getBookmarks(req.user._id);

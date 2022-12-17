@@ -1,7 +1,4 @@
-
 const blogModel = require('../models/Blog');
-
-
 
 async function createBlog(blogData){
     const newBlog = new blogModel(blogData);
@@ -24,8 +21,6 @@ async function getBlogsByCategory(category){
     const blogs = await blogModel.find({category: category}).populate('author').lean();
     return blogs
 }
-
-
 module.exports = {
     createBlog,
     getBlogs,

@@ -1,15 +1,11 @@
 
 const jwt = require('jsonwebtoken')
-
 module.exports = () => (req, res, next) => {
     if (req.headers['x-authorization']) {
         const token = req.headers['x-authorization'];
-
-
         try {
             const userData = jwt.verify(token, process.env.TOKEN_SECRET);
             req.user = userData;
-
             next()
         } catch (error) {
             console.log(error)
@@ -18,7 +14,5 @@ module.exports = () => (req, res, next) => {
     } else {
         next()
     }
-
-
 
 }
