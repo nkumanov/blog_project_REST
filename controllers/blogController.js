@@ -58,9 +58,6 @@ router.get('/category/:category', async (req, res) => {
 })
 
 router.post('/', upload.single('image'),  async (req, res) => {
-    
-    console.log(req.file)
-    
     const blogData = {
         title: req.body.title,
         subTitle: req.body.subTitle,

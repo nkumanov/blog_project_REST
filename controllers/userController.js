@@ -4,9 +4,6 @@ const userService = require('../service/user')
 const { isGuest, isUser } = require('../service/guards')
 
 router.patch('/bookmark/:id', isUser(), async (req, res) => {
-
-    
-
     try {
         await userService.addToBookmarks(req.params.id, req.user._id)
         res.status(200).json({ "message": "successfully added to Bookmarks" })
@@ -16,9 +13,6 @@ router.patch('/bookmark/:id', isUser(), async (req, res) => {
     }
 })
 router.delete('/bookmark/:id', isUser(), async (req, res) => {
-
-    
-
     try {
         await userService.removeFromBookmarks(req.params.id, req.user._id)
         res.status(200).json({ "message": "successfully removed from Bookmarks" })
@@ -28,7 +22,6 @@ router.delete('/bookmark/:id', isUser(), async (req, res) => {
     }
 })
 router.get('/bookmarked',isUser(),  async (req, res) => {
-    
     try {
         const bookmarks = await userService.getBookmarks(req.user._id);
         
@@ -47,5 +40,4 @@ router.get('/bookmarked',isUser(),  async (req, res) => {
         console.log(error)
     }
 })
-
 module.exports = router;

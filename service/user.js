@@ -54,13 +54,12 @@ function generateToken(userData) {
     const token = jwt.sign({
         _id: userData._id,
         email: userData.email
-    }, process.env.TOKEN_SECRET);
+    }, 'secret101');
     return token;
 }
 
 async function followUser(userToFollow, userId) {
     const user = await UserModel.findById(userToFollow);
-    console.log(user.followers)
     if (user.followers.indexOf(userId) != -1) {
         throw new Error("You can not follow user that you have already follow!")
     }
